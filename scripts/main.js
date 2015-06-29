@@ -2,7 +2,7 @@
   'use strict';
 
   $(document).ready(function(){
-    $('body').append(JST.booking());
+    $('body').append(JST.home());
 
 
 

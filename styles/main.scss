@@ -30,8 +30,8 @@ h4,
 h5,
 h6 {
   text-shadow: 3px 3px 5px black;
-  font-family: 'Lobster Two', cursive;
   color: white;
+  font-family: 'Lobster Two', cursive;
 }
 
 li {
@@ -103,12 +103,12 @@ header:before {
 
 .welcome {
   display: block;
-  padding-top: 9%;
+  padding-top: 3%;
   font-size: 100px;
 }
 
 .down-arrow {
-  padding-top: 180px;
+  padding-top: 110px;
   text-shadow: 3px 3px 5px black;
   font-size: 60px;
 }
@@ -393,6 +393,7 @@ $about-background-color: rgba(170, 175, 58, .7);
 }
 
 .about-heading {
+  margin: 0;
   padding-top: 80px;
   text-align: center;
   font-size: 40px;
