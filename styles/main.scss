@@ -1,21 +1,594 @@
-@import '../bower_components/bourbon/app/assets/stylesheets/bourbon';
-@import '../bower_components/neat/app/assets/stylesheets/neat';
+@import 'bourbon/bourbon';
+@import 'neat/neat';
 
-// Typography
-$base-font-family: $helvetica;
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-// Colors
-$blue: #477dca;
-$dark-gray: #333;
-$medium-gray: #999;
-$light-gray: #ddd;
-$very-light-gray: #fafafa;
-
-$base-font-color: $dark-gray;
-$base-background-color: $very-light-gray;
+html {
+  height: 100%;
+  overflow: hidden;
+}
 
 body {
-  font-family: $base-font-family;
-  background-color: $base-background-color;
-  color: $base-font-color;
+  height: 100%;
+  font-family: 'Libre Baskerville', serif;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  perspective: 1px;
+  transform-style: preserve-3d;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-shadow: 3px 3px 5px black;
+  font-family: 'Lobster Two', cursive;
+  color: white;
+}
+
+li {
+  display: inline-block;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+a:visited {
+  color: white;
+}
+
+header {
+  position: relative;
+  transform: inherit;
+  min-height: 100%;
+  text-align: center;
+  color: white;
+}
+
+header:before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  content: '';
+}
+
+header,
+header:before {
+  background: 50% 50% / cover;
+}
+
+.welcome-header {
+  transform: translateZ(-2px) scale(3);
+  z-index: -1;
+  background-image: url('../../images/barn2.jpg');
+}
+
+.top-nav {
+  position: relative;
+  z-index: 10;
+  padding-top: 10px;
+  text-align: right;
+}
+
+.top-nav-link {
+  display: inline-block;
+  transition: all 300ms;
+  margin-right: 20px;
+  border: solid white 3px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+  background-color: rgba(225, 112, 73, .7);
+  padding: 10px;
+  width: 65px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.top-nav-link:hover {
+  background-color: rgba(54, 93, 159, .7);
+}
+
+.welcome {
+  display: block;
+  padding-top: 9%;
+  font-size: 100px;
+}
+
+.down-arrow {
+  padding-top: 180px;
+  text-shadow: 3px 3px 5px black;
+  font-size: 60px;
+}
+
+.content-container {
+  @include outer-container(100%);
+}
+
+.main-nav {
+  @include span-columns(12);
+  border: solid white 3px;
+  border-radius: 10px;
+  background-color: #be7b5c;
+  padding-top: 10px;
+  height: 60px;
+  font-size: 24px;
+}
+
+.main-nav-ul {
+  @include span-columns(8);
+  @include shift(2);
+}
+
+.main-nav-li {
+  @include span-columns(2 of 8);
+  text-align: center;
+}
+
+.main-nav-link {
+  transition: color 300ms;
+  color: white;
+}
+
+.main-nav-link:hover {
+  color: #f4c57b;
+}
+
+.intro-container {
+  @include span-columns(12);
+  border-bottom: solid white 3px;
+  background-image: url('../../images/berries.jpg');
+  background-position: bottom center;
+  background-size: cover;
+  padding: 30px;
+  color: white;
+}
+
+.intro {
+  @include span-columns(5.5 of 12);
+  @include shift(1);
+  text-align: center;
+}
+
+.intro-photo {
+  border: solid white 5px;
+  border-radius: 150px;
+  height: 220px;
+}
+
+.intro-text {
+  margin-top: -75px;
+  border: solid white 5px;
+  border-radius: 15px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+  background-color: rgba(216, 82, 105, .6);
+  padding: 20px;
+  padding-top: 70px;
+  font-size: 18px;
+}
+
+.booking-link {
+  @include span-columns(3 of 12);
+  @include shift(1);
+  display: inline-block;
+  transition: background-color 300ms;
+  margin-top: 80px;
+  border: solid white 5px;
+  border-radius: 15px;
+  box-shadow: 12px 12px 30px black;
+  background-color: rgba(216, 82, 105, .6);
+  padding-top: 20px;
+  width: 300px;
+  height: 150px;
+  text-align: center;
+  text-shadow: 0 -1px #dbccc4;
+  font-size: 40px;
+}
+
+.booking-link:hover {
+  background-color: rgba(243, 169, 92, .6);
+}
+
+.booking-link:active {
+  transform: translate(0, 5px);
+  box-shadow: 6px 6px 15px black;
+}
+
+.reviews-container {
+  @include span-columns(12);
+  background-image: url('../../images/wood-snake.jpg');
+  background-position: center center;
+  background-size: cover;
+  padding: 30px;
+  text-align: center;
+}
+
+.reviews-heading {
+  padding-bottom: 30px;
+  font-size: 30px;
+}
+
+.reviews {
+  @include span-columns(10 of 12);
+  @include shift(1);
+}
+
+.review {
+  @include span-columns(2.5 of 10);
+  text-align: center;
+}
+
+.review-photo {
+  border: solid white 3px;
+  border-radius: 100px;
+  width: 150px;
+}
+
+.review-text {
+  @include span-columns(2.25 of 2.5);
+  @include shift(.125);
+  margin-top: -50px;
+  border: solid white 3px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+  background-color: rgba(190, 164, 148, .7);
+  padding: 15px;
+  padding-top: 45px;
+  color: white;
+  font-size: 16px;
+}
+
+footer {
+  @include span-columns(12);
+  background-color: #929265;
+  padding: 15px;
+}
+
+.bottom-nav {
+  @include span-columns(8 of 12);
+  @include shift(2);
+  text-align: center;
+}
+
+.bottom-nav-li {
+  @include span-columns(2 of 8);
+}
+
+.bottom-nav-link {
+  transition: color 300ms;
+  font-size: 14px;
+}
+
+.bottom-nav-link:hover {
+  color: #453736;
+}
+
+/* Booking Page */
+
+$booking-background-color: rgba(219, 160, 102, .7);
+
+.booking-body {
+  min-height: 100%;
+  background-image: url('../../images/sunrise-barn.jpg');
+  background-position: center center;
+  background-size: cover;
+}
+
+.main-nav-booking {
+  background-color: #8fc1e2;
+}
+
+.booking-main-nav-link:hover {
+  color: #f6d490;
+}
+
+.booking-heading {
+  margin: 0;
+  padding-top: 80px;
+  text-align: center;
+  color: white;
+  font-size: 40px;
+}
+
+.booking-content-left {
+  @include span-columns(4);
+  @include shift(1);
+  margin-top: 25px;
+  text-align: center;
+}
+
+.google-calendar {
+  display: block;
+  border: solid white 5px;
+  border-radius: 15px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+  background-color: $booking-background-color;
+  padding: 40px;
+  height: 350px;
+}
+
+.email {
+  margin-top: 20px;
+  border: solid white 5px;
+  border-radius: 15px;
+  box-shadow: 12px 12px 30px black;
+  background-color: $booking-background-color;
+  padding: 15px;
+  width: 300px;
+  text-shadow: 0 -1px #dbccc4;
+  font-size: 30px;
+}
+
+.email:hover {
+  background-color: rgba(143, 193, 226, .7);
+}
+
+.email:active {
+  transform: translate(0, 5px);
+  box-shadow: 6px 6px 15px black;
+}
+
+.booking-content-right {
+  @include span-columns(5);
+  @include shift(1);
+  text-align: center;
+}
+
+.booking-photo {
+  border: solid white 5px;
+  border-radius: 150px;
+  height: 200px;
+}
+
+.booking-text {
+  margin-top: -70px;
+  border: solid white 5px;
+  border-radius: 15px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+  background-color: $booking-background-color;
+  padding: 15px;
+  padding-top: 70px;
+  color: white;
+}
+
+.booking-footer {
+  position: absolute;
+  bottom: 0;
+  background-color: #c09b3f;
+}
+
+.booking-bottom-nav-link:hover {
+  color: #292d14;
+}
+
+/* About Page */
+
+$about-background-color: rgba(170, 175, 58, .7);
+
+.about-body {
+  background-image: url('../../images/sheep.jpg');
+  background-position: center center;
+  background-size: cover;
+  color: white;
+}
+
+.about-main-nav {
+  background-color: #a3aa81;
+}
+
+.about-main-nav-link:hover {
+  color: #bec034;
+}
+
+.about-heading {
+  padding-top: 80px;
+  text-align: center;
+  font-size: 40px;
+}
+
+.about-text {
+  @include span-columns(4);
+  @include shift(2);
+  margin-top: 75px;
+  border: solid white 3px;
+  border-radius: 15px;
+  background-color: $about-background-color;
+  padding: 15px;
+  text-align: center;
+}
+
+.schedule {
+  @include span-columns(3);
+  @include shift(1);
+  margin-top: 25px;
+  border: solid white 3px;
+  border-radius: 15px;
+  background-color: $about-background-color;
+  padding: 15px;
+}
+
+.schedule-heading {
+  text-align: center;
+  font-size: 24px;
+}
+
+.schedule-list-item {
+  display: block;
+  padding-top: 15px;
+}
+
+.about-booking-link {
+  @include span-columns(3);
+  margin-top: 25px;
+  border-width: 3px;
+  background-color: $about-background-color;
+
+  :hover {
+    background-color: rgba(200, 161, 74, .7);
+  }
+}
+
+.activities-heading {
+  font-size: 24px;
+}
+
+.activities {
+  @include span-columns(8);
+  @include shift(2);
+  margin-top: 35px;
+  border: solid white 3px;
+  border-radius: 15px;
+  background-color: $about-background-color;
+  padding: 10px;
+  padding-top: 15px;
+  text-align: center;
+}
+
+.activity {
+  padding: 10px;
+}
+
+.about-footer {
+  margin-top: 50px;
+  background-color: #566300;
+}
+
+.about-bottom-nav-link:hover {
+  color: #cfbf2c;
+}
+
+/* Contact Page */
+
+.contact-body {
+  background-image: url('../../images/grapes.jpg');
+  background-position: center center;
+  background-size: cover;
+}
+
+.contact-main-nav {
+  background-color: #bfd8ec;
+}
+
+.contact-main-nav-link:hover {
+  color: #2f324e;
+}
+
+.contact-heading {
+  padding-top: 80px;
+  text-align: center;
+  font-size: 40px;
+}
+
+.contact-form {
+  @include span-columns(8);
+  @include shift(2);
+  margin-top: 25px;
+  border: solid white 3px;
+  border-radius: 15px;
+  background-color: rgba(64, 105, 126, .6);
+  padding: 20px;
+  color: white;
+}
+
+.name-container {
+  @include span-columns(3 of 8);
+  display: inline;
+}
+
+.first-name-container {
+  @include shift(1);
+}
+
+.input-container {
+  @include span-columns(6 of 8);
+  @include shift(1);
+  display: block;
+}
+
+.contact-label {
+  display: block;
+  padding-top: 20px;
+  padding-bottom: 7px;
+}
+
+.name-input {
+  outline: none;
+  border: solid white 3px;
+  border-radius: 15px;
+  background-color: rgba(47, 50, 78, .7);
+  padding-left: 8px;
+  width: 100%;
+  height: 30px;
+  color: white;
+  font-size: 18px;
+}
+
+.email-input {
+  outline: none;
+  border: solid white 3px;
+  border-radius: 15px;
+  background-color: rgba(47, 50, 78, .7);
+  padding-left: 8px;
+  width: 100%;
+  height: 30px;
+  color: white;
+  font-size: 18px;
+}
+
+.message-input {
+  outline: none;
+  border: solid white 3px;
+  border-radius: 15px;
+  background-color: rgba(47, 50, 78, .7);
+  padding: 8px;
+  width: 100%;
+  height: 200px;
+  color: white;
+  font-size: 18px;
+}
+
+.send-button {
+  margin-top: 15px;
+  outline: none;
+  border: solid white 3px;
+  border-radius: 15px;
+  box-shadow: 12px 12px 30px black;
+  background-color: rgba(47, 50, 78, .7);
+  padding: 15px;
+  width: 140px;
+  text-align: center;
+  text-shadow: 0 -1px #dbccc4;
+  color: white;
+  font-size: 20px;
+
+  &:hover {
+    background-color: rgba(38, 61, 41, .7);
+  }
+
+  &:active {
+    transform: translate(0, 5px);
+    box-shadow: 6px 6px 15px black;
+  }
+
+}
+
+.contact-footer {
+  margin-top: 50px;
+  background-color: #1f2e20;
+}
+
+.contact-bottom-nav-link:hover {
+  color: #bfd8ec;
 }
